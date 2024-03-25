@@ -1,0 +1,11 @@
+public class R21 {
+   public static void main(String[] args) {
+       System.out.println("Area of the rectangle: " + A21.hei * A21.len);
+       if (A22.month >= 1 && A22.month <= 12) {
+           String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+           System.out.println("Name of the month: " + months[A22.month - 1]);
+       } else {
+         System.out.println("Invalid month value");
+       }
+   }
+}
