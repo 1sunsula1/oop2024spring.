@@ -1,0 +1,36 @@
+public class CoffeeShop {
+
+    public static void main(String[] args) {
+        int pricePerCoffee = 250; // tetri
+        int numCoffeeSold = 100;
+        int totalCostOfBeans = 15000; // tetri
+        int otherExpenses = calculateTotalExpenses();
+        double profit = calculateProfit(pricePerCoffee, numCoffeeSold, totalCostOfBeans, otherExpenses);
+        System.out.println("Profit: " + profit + " lari");
+    }
+
+    public static int calculateTotalExpenses() {
+        int totalExpenses = 0;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("expenses.txt"));
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(" ");
+                String name = parts[0];
+                int cost = Integer.parseInt(parts[1].replace(" lari", "").replace(" tetri", ""));
+                totalExpenses += cost;
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return totalExpenses;
+    }
+
+    public static double calculateProfit(int pricePerCoffee, int numCoffeeSold, int totalCostOfBeans, int otherExpenses) {
+        int totalRevenue = pricePerCoffee * numCoffeeSold;
+        int totalExpenses = totalCostOfBeans + otherExpenses;
+        double profit = (double) (totalRevenue - totalExpenses) / 100;
+        return profit;
+    }
+}
